@@ -1,0 +1,186 @@
+/* Path source
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$urlImg: 'assets/images';
+$urlFont: 'assets/fonts';
+
+/* Font face
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@font-face {
+  font-family: 'Roboto';
+  src: url(#{$urlFont}/roboto/roboto-bold-webfont.woff2) format('woff2'),
+       url(#{$urlFont}/roboto/roboto-bold-webfont.woff) format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(#{$urlFont}/roboto/roboto-light-webfont.woff2) format('woff2'),
+       url(#{$urlFont}/roboto/roboto-light-webfont.woff) format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(#{$urlFont}/roboto/roboto-regular-webfont.woff2) format('woff2'),
+       url(#{$urlFont}/roboto/roboto-regular-webfont.woff) format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url(#{$urlFont}/roboto/robotocondensed-bold-webfont.woff2) format('woff2'),
+       url(#{$urlFont}/roboto/robotocondensed-bold-webfont.woff) format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url(#{$urlFont}/roboto/robotocondensed-light-webfont.woff2) format('woff2'),
+       url(#{$urlFont}/roboto/robotocondensed-light-webfont.woff) format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url(#{$urlFont}/roboto/robotocondensed-regular-webfont.woff2) format('woff2'),
+       url(#{$urlFont}/roboto/robotocondensed-regular-webfont.woff) format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Colors
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$color-primary: #262626;
+$white: white;
+$dark: black;
+$dark-2: #393551;
+$dark-3: #626A87;
+$dark-4: #47639C;
+$purple: #B690F3;
+$purple-2: #5e43d5;
+$purple-3: #a500ad;
+$color-default: $color-primary;
+$red: #D11338;
+$red-2: #F88889;
+$red-3: #ef7679;
+$red-4: #EE4040;
+$red-5: #F37272;
+$red-6: #750000;
+$blue: #0064FF;
+$blue-2: #20A8FF;
+$blue-3: #56b3da;
+$blue-4: #167F92;
+$gray: #4D4D4D;
+$gray-2: rgba(181, 181, 181, 0.42);
+$gray-3: #3E3951;
+$gray-4: #8d8d8d;
+$gray-5: rgb(155, 164, 184);
+$gray-6: #F6F6F6;
+$gray-7: #E8EAEE;
+$gray-8: #bdc4d2;
+$gray-9: #e2e2e2;
+$gray-10: #f1f3f4;
+$gray-11: #f1f1f1;
+$gray-12: #EAF3F3;
+$gray-13: #D9E4E6;
+$gray-14: #676767;
+$green: #0b9486;
+$green-2: #18D2BA;
+$green-3: #4dbfad;
+$green-4: #55e27d;
+$green-5: #4ab54a;
+$green-6: #80f780;
+$yellow: #f1c433;
+$yellow-2: #ffd966;
+$yellow-3: #ffb303;
+$pink: #e05dc1;
+$organe: #ce7500;
+
+/* Gradient
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$gradient-1: linear-gradient(to bottom, rgba(120,149,254,1) 0%, rgba(176,191,254,1) 100%);
+$gradient-2: linear-gradient(to bottom, rgba(103,150,237,1) 0%, rgba(72,116,227,1) 100%);
+$gradient-3: linear-gradient(135deg, rgba(106,222,203,1) 0%, rgba(77,191,174,1) 100%);
+$gradient-4: linear-gradient(to bottom, rgba(211,144,245,1) 0%, rgba(211,144,245,1) 11%, rgba(191,113,230,1) 100%);
+$gradient-5: linear-gradient(45deg, rgba(105,110,121,1) 0%, rgba(43,48,59,1) 100%);
+$gradient-6: linear-gradient(to right, rgba(76,76,76,1) 0%, rgba(102,102,102,1) 100%);
+$gradient-7: linear-gradient(to right, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+
+/* Fonts
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$font-roboto: 'Roboto', sans-serif;
+$font-roboto-condensed: 'Roboto Condensed', sans-serif;
+$font-primary: $font-roboto;
+$font-secondary: $font-roboto-condensed;
+$font-icon: 'icon';
+
+/* Width page
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$width-page: 1540px;
+$width-page-secondary: 653px;
+$width-page-thirdary: 500px;
+$width-page-fourth: 820px;
+
+
+/* Breakpoint
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$break-device: 600px; //600px
+$break-xl: 1403px; //1403px
+$break-l: 1025px; //1025px
+$break-m: 992px; //992px
+$break-sm: 768px; //768px
+$break-s: 480px; //480px
+$break-xs: 375px; //375px
+
+
+/* Font-weight
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-default: $font-weight-regular;
+
+
+/* Font-size
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$font-size-default: 14px;
+
+
+/* Gutter
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$gutter: 20px;
+$gutter-mobile: 10px;
+$space: 25px;
+
+
+/* Transition
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$cubic1: cubic-bezier(0.19, 1, 0.22, 1);
+$cubic2: cubic-bezier(.48, .48, .57, .57);
+$cubic3: cubic-bezier(0.215, 0.61, 0.355, 1);
+$cubic4: cubic-bezier(0.4, 0, 0.2, 1);
+
+$transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition-secondary: all 0.3s ease;
+
+// Border-radius
+$border-radius-primary: 5px;
+
+// Border
+$line-primary: 1px solid $gray;
+
+// Height
+$height-form-element: 36px;
+$height-button: 41px;
+$height-button-2: 31px;
+
+// Box-shadow
+$box-shadow-primary: 2px 2px 2px #B0B0B0;
+$box-shadow-secondary: 2px 2px 4px #B9B9B9;

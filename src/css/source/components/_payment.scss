@@ -1,0 +1,25 @@
+.payment-smallscreen {
+  background: $gray-6;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .wrapper {
+    display: flex;
+    flex: 1;
+    height: 86.5vh;
+  }
+
+  .payment-info-wrap {
+    width: 63%;
+    height: 100%;
+  }
+
+  .payment-details-wrap {
+    flex: 1;
+  }
+
+  .payment-calculator-wrap {
+    height: 13.5vh;
+  }
+}

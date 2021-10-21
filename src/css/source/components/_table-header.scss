@@ -1,0 +1,260 @@
+.table-header {
+  height: 215px;
+  position: relative;
+
+  .table-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+
+    .log-out-btn,
+    .routing-btn-box {
+      padding: 8px 16px 8px 13px;
+      font-weight: $font-weight-bold;
+      cursor: pointer;
+      color: $white;
+      height: 61px;
+    }
+
+    .log-out-btn {
+      background: $red;
+      font-size: 35px;
+    }
+
+    .routing-btn-box {
+      background: $dark-2;
+      font-size: 30px;
+    }
+
+    .box-wrap {
+      display: flex;
+    }
+
+    .user-info,
+    .close-session-btn {
+      padding: 0 10px;
+      height: 61px;
+      font-weight: $font-weight-bold;
+      color: white;
+      font-size: 25px;
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info {
+      background: $red;
+    }
+
+    .menu-button {
+      background: $blue-4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .list-menu {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 220px;
+      background: $blue-4;
+      z-index: 30;
+      padding: 0 20px;
+
+      .list-menu-item {
+        padding: 18px 0;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid white;
+        }
+      }
+
+      .title {
+        margin-left: 12px;
+      }
+    }
+
+    .close-session-btn {
+      background: $blue;
+      cursor: pointer;
+    }
+
+    .table-plan-heading {
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: $font-weight-bold;
+      font-size: 30px;
+    }
+  }
+
+  .area-selector {
+    display: flex;
+    flex-wrap: wrap;
+
+    .selector-wrap {
+      padding: 2px;
+
+      &.large-type {
+        width: 108px;
+      }
+
+      &.area-active>.area-btn {
+        background: $green;
+      }
+
+      .area-btn {
+        background: $gray-4;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 0 10px;
+        font-weight: $font-weight-bold;
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: $white;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.add-more-area {
+          font-size: 27px;
+          background: $dark-2;
+
+          &.disable {
+            opacity: 0.3;
+            cursor: default;
+          }
+        }
+
+        &.to-go-btn.is-active {
+          background: $red-2;
+        }
+      }
+    }
+  }
+
+  .edit-table {
+    display: flex;
+    margin-top: 3px;
+
+    .edit-table-btn {
+      cursor: pointer;
+      font-size: 30px;
+      margin: 0 3px;
+      background: $gray-2;
+      padding: 5px 8px;
+      border-radius: 5px;
+
+      &.is-actived {
+        background: $green;
+        color: $white;
+      }
+    }
+
+    .edit-table-list-btn {
+      display: flex;
+      flex: 1;
+
+      .btn {
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        color: $white;
+        font-weight: $font-weight-bold;
+        padding: 0 2px;
+
+        span {
+          width: 100%;
+          height: 100%;
+          background: $green-2;
+          border-radius: 3px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 5px;
+        }
+
+        &.disable {
+          opacity: 0.3;
+          color: $dark;
+          cursor: default;
+        }
+      }
+
+      .btn-color {
+        position: relative;
+
+        .color-box {
+          position: absolute;
+          z-index: 10;
+          bottom: -45px;
+          left: -50%;
+          width: 160px;
+          display: flex;
+
+          .close-color-box {
+            position: absolute;
+            background: $dark;
+            width: 25px;
+            height: 25px;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            padding: 3px;
+            cursor: pointer;
+
+            span {
+              background: $dark;
+            }
+          }
+
+          .color {
+            flex: 1;
+            height: 40px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-page-smallscreen {
+  .table-header {
+    height: 18vh;
+
+    .table-plan-heading {
+      height: 35%;
+    }
+
+    .area-selector {
+      margin-top: 10px;
+      height: 55%;
+
+      .selector-wrap {
+        height: 50%;
+
+        .area-btn {
+          height: 100%;
+        }
+      }
+    }
+
+    .table-header-top .close-session-btn {
+      width: 70px;
+      justify-content: center;
+      font-size: 30px;
+    }
+  }
+}

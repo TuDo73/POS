@@ -1,0 +1,231 @@
+.list-order-toolbar {
+  background: $gray-8;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.search-box {
+  position: relative;
+
+  .search-icon-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-search {
+    height: 100%;
+    border: none;
+    padding: 5px 35px 5px 25px;
+    border-bottom: 1px solid $dark;
+    background: $gray-8;
+  }
+
+  .reset-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 35px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.datepicker-common {
+  background: $white;
+  border: 1px solid $dark-2;
+  display: flex;
+  align-items: center;
+
+  input {
+    border: none;
+    text-align: center;
+    font-size: 30px;
+    padding: 0;
+  }
+
+  .vdp-datepicker__calendar {
+    top: 100%;
+    width: 100%;
+  }
+}
+
+.routing-btn-box {
+  background: $dark-2;
+  color: $white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+    font-size: 34px;
+  }
+}
+
+.product-list-box {
+  position: relative;
+
+  &.is-visible-scrollbar {
+    .row-header {
+      padding-right: 80px;
+    }
+
+    .scroll-btn-box {
+      visibility: visible;
+    }
+  }
+
+  .product-list-wrapper {
+    font-size: 20px;
+    border: 1px solid $blue-4;
+
+    .row-pl {
+      display: flex;
+      cursor: pointer;
+
+      .col-pl {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        padding: 1px;
+        width: 16%;
+
+        &.small-type {
+          max-width: 130px;
+        }
+
+        &.large-type {
+          min-width: 180px;
+        }
+
+        .col-pl-data {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          word-wrap: break-word;
+          word-break: break-word;
+        }
+      }
+    }
+
+    .row-header {
+      font-weight: $font-weight-bold;
+      color: $white;
+
+      .col-pl-data {
+        background: $blue-4;
+        padding: 8px;
+      }
+    }
+
+    .row-body {
+      overflow-y: auto;
+      padding-bottom: 50px;
+
+      &::-webkit-scrollbar {
+        display: block;
+        width: 80px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $dark-2;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $red-3;
+      }
+
+      .row-pl {
+        &:nth-child(even) {
+          .col-pl-data {
+            background: $gray-12;
+          }
+        }
+
+        .col-pl-data {
+          padding: 8px 8px 8px 10px;
+          border: 1px solid $gray-13;
+        }
+      }
+    }
+  }
+
+  .scroll-btn-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 1px;
+    width: 80px;
+    height: 45px;
+    background: $dark-4;
+    visibility: hidden;
+
+    .scroll-btn {
+      color: $gray-9;
+      font-size: 29px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+}
+
+.umsatz-data {
+  font-weight: $font-weight-bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+
+  .umsatz-value {
+    color: $red;
+    padding-left: 5px;
+  }
+}
+
+.list-order-wrapper.on-smallscreen {
+  .product-list-box {
+    .product-list-wrapper {
+      font-size: 15px;
+    }
+
+    .row-header {
+      padding: 0;
+
+      .col-pl-data {
+        // padding: 8px 3px;
+      }
+    }
+
+    .row-body {
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .scroll-btn-box {
+      display: none;
+    }
+  }
+
+  .row-toolbar {
+    margin: 5px; 
+  }
+
+  .list-order-toolbar {
+    flex-wrap: wrap;
+  }
+}

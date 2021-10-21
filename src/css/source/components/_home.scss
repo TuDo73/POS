@@ -1,0 +1,42 @@
+.home-content {
+  display: flex;
+
+  .home-col {
+    &.home-col-left {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &.home-col-right {
+      width: 240px;
+      padding-left: 2px;
+      display: flex;
+      flex-direction: column;
+
+      @include min-l {
+        width: 270px;
+      }
+
+      @include min-xl {
+        width: 310px;
+      }
+
+      .nav-bar {
+        padding-left: 1px;
+        padding-top: 2px;
+      }
+    }
+  }
+
+  .home-top {
+    display: flex;
+  }
+
+  .home-bottom {
+    background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

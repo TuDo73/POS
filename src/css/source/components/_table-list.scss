@@ -1,0 +1,91 @@
+.table-list-wrap {
+  height: 50vh;
+
+  .filter-btn-wrap {
+    display: flex;
+    font-weight: $font-weight-bold;
+    font-size: 25px;
+    justify-content: center;
+    background: $gray;
+
+    .filter-btn {
+      padding: 10px 5px;
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.4);
+      height: 61px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.is-active {
+        background: $green-2;
+        color: $white;
+      }
+    }
+  }
+
+  .table-list {
+    padding: 5px;
+    overflow: auto;
+    height: calc(50vh - 61px);
+    background: $gradient-4;
+
+    .table-list-item {
+      height: 50px;
+      display: flex;
+      font-weight: $font-weight-bold;
+      padding: 0 5px;
+      margin-bottom: 5px;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 3px;
+
+      &.open-table {
+        background: $yellow;
+      }
+
+      &.free-table {
+        background: $green-6;
+      }
+
+      .table-name {
+        font-size: 20px;
+      }
+
+      .table-info {
+        font-size: 16px;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.table-page-smallscreen {
+  .table-list-wrap {
+    height: 84%;
+
+    .filter-btn-wrap {
+      height: 21%;
+
+      .filter-btn {
+        padding: 0;
+        height: 100%;
+      }
+    }
+
+    .table-list {
+      height: 79%;
+
+      .table-list-item {
+        height: 24%;
+      }
+    }
+  }
+
+  .no-result {
+    font-size: 30px;
+  }
+}

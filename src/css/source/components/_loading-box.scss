@@ -1,0 +1,124 @@
+.loading-box {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  left: 0;
+  top: 0;
+  z-index: 999;
+
+  &.popup-loading {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.loading-box-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%) rotate(45deg) translate3d(0, 0, 0);
+  animation: loader 1.2s infinite ease-in-out;
+
+  span {
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: $red-4;
+    animation: loaderBlock 1.2s infinite ease-in-out both;
+
+    &:nth-child(1) {
+      top: 0;
+      left: 0;
+    }
+
+    &:nth-child(2) {
+      top: 0;
+      right: 0;
+      animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+      left: 0;
+      animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+    }
+
+    &:nth-child(4) {
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+.btn-wrap {
+  display: flex;
+  justify-content: space-around;
+  color: $white;
+  position: absolute;
+  bottom: 21px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .btn-box {
+    background: $gray;
+    border-radius: 5px;
+    min-width: 120px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+  }
+}
+
+@keyframes loader {
+
+  0%,
+  10%,
+  100% {
+    width: 80px;
+    height: 80px;
+  }
+
+  65% {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@keyframes loaderBlock {
+
+  0%,
+  30% {
+    transform: rotate(0);
+  }
+
+  55% {
+    background-color: $red-5;
+  }
+
+  100% {
+    transform: rotate(90deg);
+
+  }
+}
+
+@keyframes loaderBlockInverse {
+
+  0%,
+  20% {
+    transform: rotate(0);
+  }
+
+  55% {
+    background-color: $red-5;
+  }
+
+  100% {
+    transform: rotate(-90deg);
+  }
+}

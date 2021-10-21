@@ -1,0 +1,224 @@
+.drag-area-wrap {
+  height: calc(100vh - 215px);
+  width: 100%;
+  overflow: auto;
+
+  .drag-area-container {
+    width: 1400px;
+    height: 1200px;
+
+    @include min-xl {
+      width: 1610px;
+    }
+  }
+}
+
+.drag-area,
+.no-drag-area {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.item-no-drag {
+  text-align: center;
+  position: absolute;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  // background: $gradient-1 !important;
+
+  &.circle {
+    border-radius: 50%;
+  }
+
+  .table-data-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .table-icon {
+      position: absolute;
+      color: $dark;
+      left: 50%;
+      top: 72%;
+      transform: translate(-50%, -50%);
+      font-size: 58px;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .table-name {
+      font-size: 18px;
+      position: relative;
+      padding-top: 8%;
+    }
+
+    .table-time-counter {
+      padding-top: 5px;
+      font-size: 17px;
+    }
+
+    .table-user-info {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $red;
+      color: $white;
+      font-weight: $font-weight-bold;
+      padding: 2px 8px;
+      box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.4);
+      border-radius: 5px 5px 0 0;
+      z-index: 100;
+    }
+  }
+}
+
+.table {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  cursor: move;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.15);
+
+  &.circle {
+    border-radius: 50%;
+  }
+
+  h3 {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+  }
+}
+
+.vdr {
+  border-radius: 5px;
+
+  &.active {
+    overflow: hidden;
+    // border: 3px solid rgba(255,255,255,0.3);
+    border: 3px dashed $white;
+  }
+
+  &.active:before {
+    outline: none !important;
+  }
+
+  .vdr-stick {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 24px;
+    cursor: grab;
+    border: none;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+
+    &:hover {
+      width: 52px !important;
+      height: 52px !important;
+    }
+
+    &.vdr-stick-tl {
+      top: 0 !important;
+      left: 0 !important;
+      margin-left: -15px;
+      margin-top: -15px;
+    }
+
+    &.vdr-stick-tm {
+      top: 0 !important;
+      margin-top: -18px;
+      margin-left: 0 !important;
+      transform: translateX(-50%);
+    }
+
+    &.vdr-stick-tr {
+      top: 0 !important;
+      right: 0 !important;
+      margin-right: -15px;
+      margin-top: -15px;
+    }
+
+    &.vdr-stick-mr {
+      right: 0 !important;
+      margin-right: -18px;
+      margin-top: 0 !important;
+      transform: translateY(-50%);
+    }
+
+    &.vdr-stick-br {
+      bottom: 0 !important;
+      right: 0 !important;
+      margin-right: -15px;
+      margin-bottom: -15px;
+    }
+
+    &.vdr-stick-bm {
+      bottom: 0 !important;
+      margin-bottom: -18px;
+      margin-left: 0 !important;
+      transform: translateX(-50%);
+    }
+
+    &.vdr-stick-bl {
+      bottom: 0 !important;
+      left: 0 !important;
+      margin-left: -15px;
+      margin-bottom: -15px;
+    }
+
+    &.vdr-stick-ml {
+      left: 0 !important;
+      margin-left: -18px;
+      margin-top: 0 !important;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.drag-area-smallscreen {
+  width: 100%;
+  height: 43vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .drag-area-container {
+    width: 1200px;
+    height: 100%;
+  }
+
+  .no-drag-area {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .item-no-drag {
+    position: static;
+    width: 110px;
+    height: 110px;
+    margin: 10px;
+
+    .table-data-wrapper {
+      .table-user-info {
+        width: 100%;
+      }
+
+      .table-icon {
+        top: 63%;
+      }
+
+      .table-time-counter {
+        padding-top: 0;
+        font-size: 14px;
+      }
+    }
+  }
+}

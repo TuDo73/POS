@@ -1,0 +1,34 @@
+.to-go-box {
+  .to-go-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+
+    .list-item {
+      background: $blue-2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      height: 130px;
+      border-radius: 10px;
+      font-size: 24px;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      &.new-order-to-go {
+        background: $green;
+      }
+    }
+  }
+}
+
+.table-page-smallscreen {
+  .to-go-box {
+    height: 43vh;
+  }
+}

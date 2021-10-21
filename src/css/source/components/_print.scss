@@ -1,0 +1,411 @@
+.print-details-box {
+  // height: calc(100vh - 151px);
+
+  .bill-details-wrapper {
+    .bill-details-header {
+      font-size: 20px;
+
+      .row-info {
+        display: flex;
+
+        &.is-disable {
+          color: $red;
+        }
+
+        .col-info {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          padding: 10px 0 10px 30px;
+        }
+      }
+
+      .row-header {
+        background: $blue;
+        color: $white;
+        font-weight: $font-weight-bold;
+      }
+
+      .row-body {
+        overflow-y: auto;
+        // height: calc(100vh - 246px);
+
+        &::-webkit-scrollbar {
+          display: block;
+          width: 50px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: $dark-2;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $red-3;
+        }
+
+        .row-info:nth-child(even) {
+          background: $gray-12;
+        }
+      }
+
+      &.is-visible-scrollbar {
+        .row-header {
+          padding-right: 50px;
+        }
+      }
+    }
+
+    .bill-details-body {
+      display: flex;
+      justify-content: space-around;
+      color: $red;
+      font-size: 25px;
+      font-weight: $font-weight-bold;
+      padding: 8px 0;
+      border-top: 1px solid $dark;
+    }
+  }
+}
+
+.print-box {
+  background: $organe;
+  display: flex;
+  justify-content: space-around;
+  height: 96px;
+
+  .btn-print {
+    background: $green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    width: 190px;
+    cursor: pointer;
+    font-size: 16px;
+
+    .icon-print-box {
+      font-size: 30px;
+      padding-bottom: 15px;
+    }
+  }
+}
+
+.bill-layout-wrapper {
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 30px;
+  background: $gray-10;
+
+  &.not-bericht-page {
+    display: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 80px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $dark-2;
+  }
+
+  // &::-webkit-scrollbar-track-piece:start {
+  //   margin-top: 20px;
+  //   background: $dark-2;
+  // }
+
+  // &::-webkit-scrollbar-track-piece:end {
+  //   margin-bottom: 20px;
+  //   background: $dark-2;
+  // }
+
+  &::-webkit-scrollbar-thumb {
+    background: $red-3;
+  }
+}
+
+.bill-layout {
+  margin: 20px auto 0 auto;
+  width: 302.36px;
+  background: white;
+  border: 1px solid $gray;
+  padding: 10px;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  color: $dark;
+  font-family: $font-roboto-condensed;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: $dark;
+  }
+
+  &.bill-layout-type2 {
+    .bill-row {
+      margin-bottom: 4px;
+
+      &.bill-row-heading {
+        margin-bottom: 6px;
+      }
+    }
+
+    .bill-datetime {
+      p {
+        margin: 0 0 3px 0;
+      }
+    }
+  }
+
+  &.bill-fontsize-16 {
+    .bill-col {
+      font-size: 16px;
+
+      &.bill-col-brutto {
+        font-size: 20px;
+      }
+    }
+
+    .bill-row {
+      .bill-col-heading {
+        font-size: 17px;
+      }
+    }
+  }
+
+  &.bill-fix-height {
+    height: 1040px;
+  }
+
+  h1 {
+    font-size: 33px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 19px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .bill-header {
+    text-align: center;
+    font-weight: $font-weight-bold;
+    font-size: 17px;
+  }
+
+  .bill-datetime {
+    text-align: right;
+    font-size: 16px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .bill-user {
+    text-align: right;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .bill-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+
+    &.bill-row-heading {
+      margin-bottom: 3px;
+    }
+
+    &.bill-row-summe {
+      font-weight: $font-weight-bold;
+
+      .bill-col {
+        font-size: 17px;
+      }
+    }
+
+    .bill-col-heading {
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
+    &.bill-row-full {
+      flex-direction: column;
+
+      .bill-col {
+        max-width: 100% !important;
+      }
+    }
+  }
+
+  .bill-col {
+    font-size: 15px;
+
+    &.bill-col-product {
+      max-width: 197px;
+    }
+
+    &.bill-col-rabatt {
+      font-size: 10px
+    }
+
+    &.bill-col-brutto {
+      font-size: 20px;
+    }
+  }
+
+  .bill-single-item {
+    margin-bottom: 3px;
+  }
+
+  .bill-zwis {
+    margin-top: 35px;
+
+    .bill-col {
+      font-size: 15px;
+
+      &.bill-col-brutto {
+        font-size: 20px;
+      }
+    }
+
+    .bill-col-sperate {
+      width: 100%;
+      text-align: right;
+    }
+  }
+
+  .bill-row-footer {
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+
+    .bill-col {
+      font-size: 15px;
+    }
+
+    .bill-row-barzah {
+      margin-bottom: 15px;
+    }
+
+    .bill-row-footer-star {
+      font-weight: $font-weight-bold;
+      justify-content: center;
+      font-size: 27px;
+
+      span {
+        margin: 0 6px;
+      }
+    }
+  }
+
+  p {
+    &.heading-type {
+      font-weight: $font-weight-bold;
+      font-size: 16px;
+    }
+  }
+
+  .confirm-text {
+    .confirm-line {
+      margin-top: 20px;
+    }
+  }
+}
+
+.print-details-box.on-smallscreen {
+  .bill-details-wrapper {
+    .bill-details-header {
+      &.is-visible-scrollbar .row-header {
+        padding: 0;
+      }
+
+      .row-body {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+
+    .bill-details-body {
+      display: block;
+      padding-left: 20px;
+    }
+  }
+
+  .row-bill-details {
+    display: flex;
+
+    span:nth-child(1) {
+      margin-right: 10px;
+      min-width: 40%;
+    }
+  }
+}
+
+.print-box.on-smallscreen {
+  .btn-print {
+    width: 150px;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0;
+    padding: 0;
+    size: portrait;
+  }
+
+  .bill-layout-wrapper {
+    height: auto !important;
+    background: $white;
+    margin-top: -40px;
+
+    &.not-bericht-page {
+      display: block;
+    }
+  }
+
+  .bill-details-box {
+    background: $white;
+    align-items: flex-start;
+  }
+
+  .bill-layout {
+    width: 335.36px;
+    margin: 0;
+    border: none;
+    padding: 0 0 0 15.8px;
+    letter-spacing: 0.5px;
+
+    .bill-col-total-amount {
+      padding-top: 0.2px;
+    }
+  }
+
+  body,
+  html,
+  main,
+  .bill-details-box,
+  .bill-layout-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+
+  header,
+  .print-box,
+  .print-details-box,
+  .bericht-header,
+  .hide-on-print {
+    display: none;
+  }
+}

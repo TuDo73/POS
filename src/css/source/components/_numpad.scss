@@ -1,0 +1,256 @@
+body.is-large-screen {
+  .number-btn span {
+    padding: 23px 0;
+  }
+}
+
+.numpad {
+  display: flex;
+  flex-direction: column;
+
+  .number-input-box {
+    padding-left: 1px;
+    margin-bottom: 1px;
+
+    .number-input {
+      background: $gray-7;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      padding-right: 1px;
+    }
+
+    .number-input-item {
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-weight: $font-weight-bold;
+      cursor: pointer;
+
+      &.item-quantity {
+        width: 30%;
+      }
+
+      &.item-plu {
+        width: 65%;
+      }
+
+      &.is-active {
+        .number-input-item-data {
+          background: $red-3;
+        }
+      }
+
+      .number-input-item-label {
+        font-size: 15px
+      }
+
+      .number-input-item-data {
+        background: $gray-8;
+        width: 100%;
+        font-size: 22px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 3px;
+      }
+    }
+
+    .number-input-icon {
+      width: 5%;
+      font-size: 22px;
+      font-weight: $font-weight-bold;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+  }
+
+  .number-box {
+    .number-list {
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+
+      .number-item {
+        width: calc(100% / 3);
+
+        &.large-type {
+          width: calc((100% / 3) * 2);
+        }
+
+        &.very-large-type {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.number-btn {
+  height: 100%;
+  cursor: pointer;
+  font-weight: $font-weight-bold;
+  font-size: 23px;
+  display: flex;
+  justify-content: center;
+  padding: 1px;
+  position: relative;
+
+  span {
+    background: $gradient-3;
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+  }
+}
+
+.table-numpad {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .table-free-data {
+    .data-content {
+      display: flex;
+      background: $gradient-6;
+      text-transform: uppercase;
+      font-weight: $font-weight-bold;
+      color: white;
+      padding: 8px 3px;
+      font-size: 20px;
+
+      .table-search-info {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .numpad {
+    flex: 1;
+
+    .number-box {
+      flex: 1;
+    }
+  }
+
+  .number-btn {
+    &.del-btn {
+      span {
+        background: $red;
+      }
+
+      [class^="icon-"],
+      [class*=" icon-"] {
+        font-size: 30px;
+      }
+    }
+
+    &.enter-btn {
+      height: calc(200% + 1px);
+
+      span {
+        background: $blue;
+      }
+    }
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.popup-numpad {
+
+  .number-btn span {
+    background: $green-2;
+    padding: 27px 5px;
+    color: $dark;
+  }
+}
+
+.payment-numpad {
+
+  .number-btn span {
+    padding: 22px 0;
+  }
+
+  .icon-arrow-thick-left {
+    font-size: 30px;
+  }
+}
+
+.main-smallscreen {
+  .home-numpad {
+    height: 86.8%;
+  }
+
+  .numpad {
+    height: 100%;
+
+    .number-input-box {
+      height: 17%;
+      padding-left: 3px;
+      margin-right: 3px;
+
+      .number-input {
+        height: 100%;
+
+        .number-input-item {
+          .number-input-item-label {
+            height: 40%;
+            font-size: 20px;
+          }
+
+          .number-input-item-data {
+            height: 60%;
+          }
+        }
+      }
+    }
+  }
+
+  .number-box {
+    height: 83%;
+  }
+
+  .number-btn {
+    padding: 3px;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}
+
+.table-page-smallscreen {
+  .table-numpad {
+    height: 84%;
+
+    .table-free-data .data-content {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      padding: 0;
+    }
+
+    .numpad {
+      height: 85%;
+    }
+  }
+
+  .number-btn span {
+    padding: 0;
+  }
+
+  .table-free-data {
+    height: 15%;
+  }
+}

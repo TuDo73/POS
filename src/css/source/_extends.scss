@@ -1,0 +1,70 @@
+%container {
+  width: 100%;
+  max-width: $width-page + $gutter + $gutter;
+  padding: 0 $gutter;
+  margin: 0 auto;
+
+  @include max-sm {
+    max-width: $width-page + $gutter-mobile + $gutter-mobile;
+    padding: 0 $gutter-mobile;
+  }
+}
+
+%container-secondary {
+  @extend %container;
+  max-width: $width-page-secondary + $gutter + $gutter;
+
+  @include max-sm {
+    max-width: $width-page-secondary + $gutter-mobile + $gutter-mobile;
+  }
+}
+
+%container-thirdary {
+  @extend %container;
+  max-width: $width-page-thirdary;
+  padding: 0;
+
+  @include max-sm {
+    max-width: 100%;
+  }
+}
+
+%container-thirdary-original {
+  @extend %container;
+  max-width: $width-page-thirdary + $gutter + $gutter;
+
+  @include max-sm {
+    max-width: $width-page-secondary + $gutter-mobile + $gutter-mobile;
+  }
+}
+
+%container-fourth {
+  @extend %container;
+  max-width: $width-page-fourth + $gutter + $gutter;
+
+  @include max-sm {
+    max-width: $width-page-fourth + $gutter-mobile + $gutter-mobile;
+  }
+}
+
+%link {
+  color: $blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+%link-hover {
+  transition: $transition;
+
+  &:hover {
+    color: $blue;
+  }
+}
+
+%panel-hover {
+  transition: $transition;
+
+  &:hover {
+    background-color: $blue;
+  }
+}

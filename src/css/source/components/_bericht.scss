@@ -1,0 +1,64 @@
+.bericht-header {
+  .bericht-header-button {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+
+    // @include vertablet {
+    //   padding: 0 0 10px 0;
+    //   flex-wrap: wrap;
+    // }
+    button {
+      background: $blue;
+      border: none;
+      color: $white;
+      margin: 0 5px;
+      padding: 12px 22px;
+      cursor: pointer;
+      text-transform: uppercase;
+
+      &.is-active {
+        background: $red;
+      }
+
+      // @include vertablet {
+      //   margin: 3px;
+      //   width: calc((100% - 24px)/4);
+      // }
+
+      // @include xsm {
+      //   padding: 5px 10px;
+      // }
+
+      // @include xxsm {
+      //   font-size: 12px;
+      //   padding: 5px;
+      // }
+    }
+  }
+
+  .bericht-info-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .datepicker-common {
+      margin-bottom: 15px;
+    }
+
+    .bericht-info-header-select {
+      margin-bottom: 20px;
+
+      .select-common {
+        font-size: 25px;
+      }
+    }
+
+    .select-common {
+      font-size: 24px;
+      margin-bottom: 10px;
+      height: 37px;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+.payment-calculator {
+  width: 240px;
+  height: 100%;
+  padding: 5px;
+  background: $gray-6;
+  display: flex;
+  flex-direction: column;
+
+  @include min-xl {
+    width: 300px;
+  }
+
+  @include min-l {
+    width: 260px;
+  }
+}
+
+.payment-methods {
+  padding-top: 5px;
+  flex: 1;
+}
+
+.methods-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .methods-item {
+    height: calc(100% / 2);
+
+    .payment-btn {
+      height: 100%;
+      font-size: 30px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+
+      &.confirm-btn {
+        background: $blue-3;
+      }
+
+      &.back-btn {
+        background: $red-3;
+      }
+
+      .payment-btn-name {
+        position: relative;
+        z-index: 3;
+      }
+
+      .nav-btn-icon {
+        position: absolute;
+        color: white;
+        z-index: 1;
+        font-size: 104px;
+        left: -9px;
+        opacity: 0.3;
+        top: -18px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.payment-method-smallscreen {
+  height: 100%;
+
+  .methods-list {
+    flex-direction: row;
+    padding: 5px;
+
+    .methods-item {
+      height: 100%;
+      flex: 1;
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+    }
+  }
+}

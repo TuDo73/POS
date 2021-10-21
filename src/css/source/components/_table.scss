@@ -1,0 +1,32 @@
+.table-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: $gray-11;
+
+  .left-pane {
+    width: calc(100% - 255px);
+
+    @include min-l {
+      width: calc(100% - 270px);
+    }
+
+    @include min-xl {
+      width: calc(100% - 310px);
+    }
+  }
+
+  .right-pane {
+    width: 255px;
+    display: flex;
+    flex-direction: column;
+
+    @include min-l {
+      width: 270px;
+    }
+
+    @include min-xl {
+      width: 310px;
+    }
+  }
+}

@@ -1,0 +1,111 @@
+.add-customer-btn-box {
+  background: $red-4;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  span {
+    font-size: 50px;
+  }
+}
+
+.customer-toolbar {
+  background: $gray-8;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+
+  &.new-customer-page {
+    justify-content: flex-end;
+  }
+}
+
+.customer-data-box {
+  padding: 5px 10px 10px 10px;
+  border: 1px solid $dark;
+
+  .form-row {
+    display: flex;
+    margin-bottom: 3px;
+
+    &:last-child {
+      margin: 8px 0;
+    }
+  }
+
+  .form-data {
+    width: 50%;
+    display: flex;
+    align-items: center;
+
+    .form-label {
+      width: 30%;
+      text-align: right;
+      font-size: 20px;
+      font-weight: $font-weight-bold;
+      padding-right: 20px;
+    }
+
+    .form-input {
+      flex: 1;
+
+      input {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.save-to-server-box {
+  width: 50%;
+  text-align: right;
+
+  span {
+    font-size: 50px;
+    cursor: pointer;
+  }
+}
+
+.select-customer {
+  background: $green;
+  color: $white;
+  width: 130px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.customer-wrapper.on-smallscreen {
+  .customer-data-box {
+    .form-row {
+      flex-direction: column;
+      margin: 0;
+
+      &:first-child {
+        .form-data {
+          order: 2;
+        }
+      }
+    }
+
+    .form-data {
+      width: 100%;
+      margin: 6px 0;
+
+      .form-label {
+        width: 35%;
+      }
+    }
+
+    .save-to-server-box {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
