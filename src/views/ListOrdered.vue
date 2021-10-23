@@ -177,7 +177,6 @@ export default {
 
     listOrdersForShow() {
       let orders = globalFunction.deepCloneObj(this.listOrders);
-      // console.log('orders:', orders);
 
       orders = orders.reduce((orders, order) => {
         switch (this.queryUrl) {
@@ -229,7 +228,6 @@ export default {
         }
         return orders;
       }, []);
-      // console.log('orders:', orders);
       return orders;
     },
   },
@@ -366,15 +364,12 @@ export default {
 
       this.$store.commit("helper/showLoading", true);
       OrderService.getOrderByRef(orderTmp.ref).then((res) => {
-        // console.log('res:', res);
         let orderLinesTmp = JSON.parse(res.orderlines);
 
         orderTmp.orderLines = orderLinesTmp;
         ordersTmp.push(orderTmp);
         this.$store.commit("order/setOrderSelected", orderTmp);
         this.$store.commit("order/setOrders", ordersTmp);
-        // console.log('orderTmp:', this.orderSelected);
-        // console.log('ordersTmp:', ordersTmp);
 
         // chuyển đến page print
         OrderService.save().then(() => {

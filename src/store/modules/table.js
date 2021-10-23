@@ -1,21 +1,22 @@
-import { globalFunction } from '@/global/global.js';
-import router from '@/router'
+import { globalFunction } from "@/global/global.js";
+import router from "@/router";
 
-const state = { // data
+const state = {
+  // data
   allTablesData: [],
   areas: [],
 
   areaColors: [
-    { 'areaColor': '#F49595' },
-    { 'areaColor': '#82E9AB' },
-    { 'areaColor': '#8889F2' },
-    { 'areaColor': '#FFD688' }
+    { areaColor: "#F49595" },
+    { areaColor: "#82E9AB" },
+    { areaColor: "#8889F2" },
+    { areaColor: "#FFD688" },
   ],
   tableColors: [
-    { 'tableColor': '#EE4040' },
-    { 'tableColor': '#53bb53' },
-    { 'tableColor': '#0064FF' },
-    { 'tableColor': '#f1c433' }
+    { tableColor: "#EE4040" },
+    { tableColor: "#53bb53" },
+    { tableColor: "#0064FF" },
+    { tableColor: "#f1c433" },
   ],
 
   tables: [], // bàn trong 1 khung area
@@ -27,10 +28,10 @@ const state = { // data
   isOpenAreaColor: false,
   isOpenTableColor: false,
   isDisableBtn: true,
-  areaBgColor: '',
+  areaBgColor: "",
   numNewArea: 1,
-  typeChangeText: '',
-  textInputData: '',
+  typeChangeText: "",
+  textInputData: "",
 
   isActiveChangeTextPopup: false,
   isActiveRemoveAreaPopup: false,
@@ -38,35 +39,35 @@ const state = { // data
   tableOrdered: {},
   isOpen: true,
   tableForSearch: {},
-  searchInput: '',
-  refOrderTogoSelected: ''
+  searchInput: "",
+  refOrderTogoSelected: "",
 };
 
-const getters = { // computed
+const getters = {
+  // computed
 };
 
-const actions = { // methods
-  resize({state}, [newRect, index]) {
+const actions = {
+  // methods
+  resize({ state }, [newRect, index]) {
     state.tables[index].width = newRect.width;
     state.tables[index].height = newRect.height;
     state.tables[index].top = newRect.top;
     state.tables[index].left = newRect.left;
   },
 
-  onDragstop({state}, newRect) {
-    // console.log('onDragstop:', newRect);
+  onDragstop({ state }, newRect) {
     // Nếu chưa chọn table thì không thể nào drag-drop được
-    if(typeof state.tableSelected.active === "undefined"){
+    if (typeof state.tableSelected.active === "undefined") {
       return;
     }
 
     //------- request API
-    let link = globalFunction.baseUrl + 'table/add';
+    let link = globalFunction.baseUrl + "table/add";
     globalFunction.request(link, state.tableSelected);
   },
 
-  onActiveTable({state, dispatch}, index) {
-    // console.log('onActiveTable index:', index);
+  onActiveTable({ state, dispatch }, index) {
     state.isDisableBtn = false;
 
     for (let i = 0; i < state.tables.length; i++) {
@@ -82,21 +83,19 @@ const actions = { // methods
     state.isOpenAreaColor = false;
   },
 
-  onDeactiveTable({state}, index) { // luôn run khi trạng thái active của bàn bị thay đổi
-    // console.log('onDeactiveTable index:', index);
+  onDeactiveTable({ state }, index) {
+    // luôn run khi trạng thái active của bàn bị thay đổi
     state.tables[index].active = false;
     state.isOpenTableColor = false;
   },
 
-  doDeactive({state}) {
-    // console.log('isDeactive');
+  doDeactive({ state }) {
     state.tableSelected = {};
     state.isOpenAreaColor = false;
     state.isDisableBtn = true;
-
   },
 
-  editTable({state}) {
+  editTable({ state }) {
     state.isEditTable = !state.isEditTable;
 
     if (state.isEditTable === false) {
@@ -112,9 +111,24 @@ const actions = { // methods
     }
   },
 
-  addNewTable({state}) {
+  addNewTable({ state }) {
     if (state.isEditTable) {
-      let table = { 'code': 0, 'name': 'Table 0', 'areaCode': 0, 'width': 130, 'height': 130, 'left': 0, 'top': 350, 'active': true, 'type': 'square', 'color': '#53bb53', 'isbusy': false, 'totalprice': 0, 'username': '', 'isTogo': false};
+      let table = {
+        code: 0,
+        name: "Table 0",
+        areaCode: 0,
+        width: 130,
+        height: 130,
+        left: 0,
+        top: 350,
+        active: true,
+        type: "square",
+        color: "#53bb53",
+        isbusy: false,
+        totalprice: 0,
+        username: "",
+        isTogo: false,
+      };
       let newTable = globalFunction.deepCloneObj(table);
       let maxCode = 0;
 
@@ -130,14 +144,14 @@ const actions = { // methods
 
       newTable.code = maxCode + 1;
       // newTable.name = `${state.numNewTable}`;
-      newTable.name = 'New';
+      newTable.name = "New";
       state.tables.push(newTable);
       state.allTablesData.push(newTable);
       state.tableSelected = newTable;
       state.numNewTable++;
 
       //------- request API
-      let link = globalFunction.baseUrl + 'table/add';
+      let link = globalFunction.baseUrl + "table/add";
       globalFunction.request(link, newTable);
       globalFunction.stringForSearch(state.allTablesData);
 
@@ -151,9 +165,10 @@ const actions = { // methods
       state.isOpenTableColor = false;
     }
 
-    state.isDisableBtn = false;  },
+    state.isDisableBtn = false;
+  },
 
-  copyTable({state}) {
+  copyTable({ state }) {
     if (globalFunction.checkValid(state.tableSelected.code)) {
       let codeTableSelected = state.tableSelected.code;
       let tableCopied = globalFunction.deepCloneObj(state.tableSelected);
@@ -174,7 +189,7 @@ const actions = { // methods
       state.tableSelected = tableCopied;
 
       //------- request API
-      let link = globalFunction.baseUrl + 'table/add';
+      let link = globalFunction.baseUrl + "table/add";
       globalFunction.request(link, tableCopied);
 
       for (let i = 0; i < state.tables.length; i++) {
@@ -187,28 +202,30 @@ const actions = { // methods
     }
   },
 
-  changeShapeTable({state}) {
+  changeShapeTable({ state }) {
     if (globalFunction.checkValid(state.tableSelected.code)) {
       let shapeTable = state.tableSelected.type;
-      let tableActive = document.querySelector('.active').getElementsByClassName('table')[0];
+      let tableActive = document
+        .querySelector(".active")
+        .getElementsByClassName("table")[0];
 
-      if (shapeTable === 'square') {
-        state.tableSelected.type = 'circle';
-        tableActive.classList.add('circle');
+      if (shapeTable === "square") {
+        state.tableSelected.type = "circle";
+        tableActive.classList.add("circle");
       } else {
-        state.tableSelected.type = 'square';
-        tableActive.classList.remove('circle');
+        state.tableSelected.type = "square";
+        tableActive.classList.remove("circle");
       }
 
       //------- request API
-      let link = globalFunction.baseUrl + 'table/add';
+      let link = globalFunction.baseUrl + "table/add";
       globalFunction.request(link, state.tableSelected);
     }
 
     state.isOpenTableColor = false;
   },
 
-  deleteTable({state}) {
+  deleteTable({ state }) {
     if (globalFunction.checkValid(state.tableSelected.code)) {
       let allTableAfterRemove = globalFunction.removeObj(state.tables, true);
       state.tables = allTableAfterRemove;
@@ -220,8 +237,8 @@ const actions = { // methods
       }
 
       //------- request API
-      let link = globalFunction.baseUrl + 'table/remove';
-      let data = {'code': state.tableSelected.code};
+      let link = globalFunction.baseUrl + "table/remove";
+      let data = { code: state.tableSelected.code };
       globalFunction.request(link, data);
     }
 
@@ -230,18 +247,22 @@ const actions = { // methods
     state.isOpenTableColor = false;
   },
 
-  deleteArea({state, dispatch}) {
+  deleteArea({ state, dispatch }) {
     // xóa tables nằm trong area deleted
     for (let area of state.areas) {
       if (area.active) {
         let codeAreaRemove = area.code;
-        let allTableDataAfterRemove = globalFunction.removeObj(state.allTablesData, codeAreaRemove, false);
+        let allTableDataAfterRemove = globalFunction.removeObj(
+          state.allTablesData,
+          codeAreaRemove,
+          false
+        );
 
         for (let table of state.allTablesData) {
           if (table.areaCode === codeAreaRemove) {
             //------- request API
-            let linkTable = globalFunction.baseUrl + 'table/remove';
-            let dataTable = {'code': table.code};
+            let linkTable = globalFunction.baseUrl + "table/remove";
+            let dataTable = { code: table.code };
             globalFunction.request(linkTable, dataTable);
           }
         }
@@ -250,8 +271,8 @@ const actions = { // methods
         state.tables = [];
 
         //------- request API
-        let linkArea = globalFunction.baseUrl + 'area/remove';
-        let dataArea = {'code': area.code};
+        let linkArea = globalFunction.baseUrl + "area/remove";
+        let dataArea = { code: area.code };
         globalFunction.request(linkArea, dataArea);
       }
     }
@@ -259,13 +280,13 @@ const actions = { // methods
     let allAreaAfterRemove = globalFunction.removeObj(state.areas, true);
     state.areas = allAreaAfterRemove;
 
-    dispatch('selectArea', state.areas.length - 1);
+    dispatch("selectArea", state.areas.length - 1);
 
-    dispatch('popup/updatePopupState', false, { root: true });
+    dispatch("popup/updatePopupState", false, { root: true });
     state.isActiveRemoveAreaPopup = false;
   },
 
-  openAreaColor({state}) {
+  openAreaColor({ state }) {
     state.isDisableBtn = true;
     state.isOpenAreaColor = true;
     state.isOpenTableColor = false;
@@ -276,21 +297,21 @@ const actions = { // methods
     }
   },
 
-  openTableColor({state}) {
+  openTableColor({ state }) {
     if (globalFunction.checkValid(state.tableSelected.code)) {
       state.isOpenTableColor = true;
-      state.isOpenAreaColor = false
+      state.isOpenAreaColor = false;
     }
   },
 
-  changeColor({state}, index) {
+  changeColor({ state }, index) {
     if (globalFunction.checkValid(state.tableSelected.code)) {
       let tableColor = state.tableColors[index].tableColor;
 
       state.tableSelected.color = tableColor;
 
       //------- request API
-      let link = globalFunction.baseUrl + 'table/add';
+      let link = globalFunction.baseUrl + "table/add";
       globalFunction.request(link, state.tableSelected);
     } else {
       let bgColorIndex = state.areaColors[index].areaColor;
@@ -301,19 +322,19 @@ const actions = { // methods
           state.areaBgColor = item.bgColor;
 
           //------- request API
-          let link = globalFunction.baseUrl + 'area/add';
+          let link = globalFunction.baseUrl + "area/add";
           globalFunction.request(link, item);
         }
       }
     }
   },
 
-  closeColorBox({state}) {
+  closeColorBox({ state }) {
     state.isOpenAreaColor = false;
     state.isOpenTableColor = false;
   },
 
-  selectArea({state}, index) {
+  selectArea({ state }, index) {
     state.isActiveTogo = false;
     state.tableSelected = {};
     state.areaBgColor = state.areas[index].bgColor;
@@ -336,12 +357,17 @@ const actions = { // methods
     state.isOpenAreaColor = false;
     state.isOpenTableColor = false;
     state.tableForSearch = {};
-    state.searchInput = '';
+    state.searchInput = "";
   },
 
-  addMoreArea({state, dispatch}) {
+  addMoreArea({ state, dispatch }) {
     if (state.areas.length < 6 && state.isActiveTogo == false) {
-      let area = { 'code': 0, 'name': 'New Area', 'active': false, 'bgColor': '#a6a6a6' };
+      let area = {
+        code: 0,
+        name: "New Area",
+        active: false,
+        bgColor: "#a6a6a6",
+      };
       let newArea = globalFunction.deepCloneObj(area);
       let maxCode = 0;
 
@@ -353,80 +379,83 @@ const actions = { // methods
       state.areas.push(newArea);
 
       //------- request API
-      let link = globalFunction.baseUrl + 'area/add';
+      let link = globalFunction.baseUrl + "area/add";
       globalFunction.request(link, newArea);
 
-      dispatch('selectArea', state.areas.length - 1);
+      dispatch("selectArea", state.areas.length - 1);
     }
   },
 
-  showHidePopupDeleteArea({commit, state, dispatch}, value) {
-    if(value) {
+  showHidePopupDeleteArea({ commit, state, dispatch }, value) {
+    if (value) {
       if (state.areas.length > 1) {
-        dispatch('popup/updatePopupState', value, {root: true});
+        dispatch("popup/updatePopupState", value, { root: true });
         state.isActiveRemoveAreaPopup = value;
       }
-    }else {
+    } else {
       state.isActiveRemoveAreaPopup = value;
       state.tableSelected = {};
       state.isDisableBtn = true;
     }
   },
 
-  showHidePopupChangeText({commit, state, dispatch}, value) {
-    if(value) {
-      if(globalFunction.checkValid(state.tableSelected.code) && state.typeChangeText == 'table') {
-        dispatch('popup/updatePopupState', value, {root: true});
+  showHidePopupChangeText({ commit, state, dispatch }, value) {
+    if (value) {
+      if (
+        globalFunction.checkValid(state.tableSelected.code) &&
+        state.typeChangeText == "table"
+      ) {
+        dispatch("popup/updatePopupState", value, { root: true });
         state.isActiveChangeTextPopup = value;
-        state.textInputData = '';
+        state.textInputData = "";
       }
 
-      if(state.typeChangeText == 'area') {
-        dispatch('popup/updatePopupState', value, {root: true});
+      if (state.typeChangeText == "area") {
+        dispatch("popup/updatePopupState", value, { root: true });
         state.isActiveChangeTextPopup = value;
-        state.textInputData = '';
+        state.textInputData = "";
       }
-    }else {
+    } else {
       state.isActiveChangeTextPopup = value;
-      for(let table of state.allTablesData) {
+      for (let table of state.allTablesData) {
         table.active = false;
       }
     }
   },
 
-  changeText({commit, state, dispatch}) {
-    if(state.typeChangeText == 'table') {
+  changeText({ commit, state, dispatch }) {
+    if (state.typeChangeText == "table") {
       for (let table of state.allTablesData) {
         if (state.textInputData === table.name) {
-          dispatch('popup/updatePopupChangeTextError', true, { root: true });
+          dispatch("popup/updatePopupChangeTextError", true, { root: true });
           state.isActiveChangeTextPopup = false;
           return;
         }
       }
 
       state.tableSelected.name = state.textInputData;
-      dispatch('popup/updatePopupState', false, { root: true });
+      dispatch("popup/updatePopupState", false, { root: true });
       state.isActiveChangeTextPopup = false;
 
       //------- request API
-      let link = globalFunction.baseUrl + 'table/add';
+      let link = globalFunction.baseUrl + "table/add";
       globalFunction.request(link, state.tableSelected);
 
       globalFunction.stringForSearch(state.allTablesData);
     }
 
-    if(state.typeChangeText == 'area') {
+    if (state.typeChangeText == "area") {
       state.areaSelected.name = state.textInputData;
-      dispatch('popup/updatePopupState', false, { root: true });
+      dispatch("popup/updatePopupState", false, { root: true });
       state.isActiveChangeTextPopup = false;
 
       //------- request API
-      let link = globalFunction.baseUrl + 'area/add';
+      let link = globalFunction.baseUrl + "area/add";
       globalFunction.request(link, state.areaSelected);
     }
   },
 
-  openTogo({state}) {
+  openTogo({ state }) {
     state.isActiveTogo = true;
 
     for (let area of state.areas) {
@@ -434,12 +463,12 @@ const actions = { // methods
     }
   },
 
-  searchTable({commit, state, dispatch}, [searchValue]) {
+  searchTable({ commit, state, dispatch }, [searchValue]) {
     state.tableForSearch = {};
 
     searchValue = searchValue.toString().toLowerCase();
 
-    if (searchValue == '') {
+    if (searchValue == "") {
       state.tableForSearch = {};
     } else {
       for (let table of state.allTablesData) {
@@ -451,83 +480,89 @@ const actions = { // methods
     }
   },
 
-  clickNumBtn({commit, state, dispatch, rootState}, val) {
-    if (val === 'delete') {
-      state.searchInput = '';
-      dispatch('searchTable', [state.searchInput]);
+  clickNumBtn({ commit, state, dispatch, rootState }, val) {
+    if (val === "delete") {
+      state.searchInput = "";
+      dispatch("searchTable", [state.searchInput]);
       return;
     }
-    if (val === 'enter') {
-      if (state.searchInput !== '') {
-        if (!state.tableForSearch.searchActive) { // check bàn đã có hay chưa
-          dispatch('popup/updatePopupState', true, { root: true });
-          dispatch('popup/updatePopupTableNotAvailable', true, { root: true });
+    if (val === "enter") {
+      if (state.searchInput !== "") {
+        if (!state.tableForSearch.searchActive) {
+          // check bàn đã có hay chưa
+          dispatch("popup/updatePopupState", true, { root: true });
+          dispatch("popup/updatePopupTableNotAvailable", true, { root: true });
           return;
         }
 
         let userName = rootState.user.user.username;
         let fullName = rootState.user.user.fullname;
 
-        dispatch('selectTable', [state.tableForSearch, userName, fullName]);
+        dispatch("selectTable", [state.tableForSearch, userName, fullName]);
       }
       return;
     }
-    if (state.searchInput === '') {
-      if (val !== '0') {
+    if (state.searchInput === "") {
+      if (val !== "0") {
         state.searchInput += val;
-        dispatch('searchTable', [state.searchInput]);
+        dispatch("searchTable", [state.searchInput]);
       }
     } else {
       state.searchInput += val;
-      dispatch('searchTable', [state.searchInput]);
+      dispatch("searchTable", [state.searchInput]);
     }
   },
 
-  async selectTable({commit, state, dispatch}, [table, userName, fullName, isGoToHome = true]) {
-    commit('helper/showLoading', true, { root: true });
+  async selectTable(
+    { commit, state, dispatch },
+    [table, userName, fullName, isGoToHome = true]
+  ) {
+    commit("helper/showLoading", true, { root: true });
 
-    if(table.isTogo) { // trường hợp là order to-go
-      router.push({ path: 'home' });
-      commit('setTableOrdered', table);
-    } else { // trường hợp là ăn tại quán
+    if (table.isTogo) {
+      // trường hợp là order to-go
+      router.push({ path: "home" });
+      commit("setTableOrdered", table);
+    } else {
+      // trường hợp là ăn tại quán
       if (!table.isbusy) {
-        let tableTmp = {...table};
+        let tableTmp = { ...table };
         let dataTableUser = {};
-  
+
         tableTmp.isbusy = true;
         tableTmp.username = userName;
-  
-        let link = globalFunction.baseUrl + 'table/add';
+
+        let link = globalFunction.baseUrl + "table/add";
         let tableResponse = await globalFunction.request(link, tableTmp);
-  
-        commit('helper/showLoading', false, { root: true });
+
+        commit("helper/showLoading", false, { root: true });
         dataTableUser.tableCode = table.code;
         dataTableUser.userName = userName;
         dataTableUser.userFullName = fullName;
         dataTableUser.totalPrice = 0;
-        this._vm.$socket.emit('SELECT_TABLE', dataTableUser);
-  
+        this._vm.$socket.emit("SELECT_TABLE", dataTableUser);
+
         if (isGoToHome) {
-          router.push({ path: 'home' });
-          commit('setTableOrdered', table);
+          router.push({ path: "home" });
+          commit("setTableOrdered", table);
         }
       } else {
         if (table.username == userName) {
-          router.push({ path: 'home' });
-          commit('setTableOrdered', table);
+          router.push({ path: "home" });
+          commit("setTableOrdered", table);
         } else {
-          dispatch('popup/updatePopupState', true, { root: true });
-          dispatch('popup/updatePopupTableBusy', true, { root: true });
+          dispatch("popup/updatePopupState", true, { root: true });
+          dispatch("popup/updatePopupTableBusy", true, { root: true });
         }
       }
     }
 
-    commit('helper/showLoading', false, { root: true });
-  }
-
+    commit("helper/showLoading", false, { root: true });
+  },
 };
 
-const mutations = { // handle response from actions to update state
+const mutations = {
+  // handle response from actions to update state
   setDataArea(state, allArea) {
     state.areas = allArea;
   },
@@ -556,8 +591,7 @@ const mutations = { // handle response from actions to update state
 
   setTableOrdered(state, table) {
     state.tableOrdered = table;
-    // console.log(state.tableOrdered);
-    globalFunction.storeToLocalStorage('tableOrdered', table);
+    globalFunction.storeToLocalStorage("tableOrdered", table);
   },
 
   setIsOpen(state, val) {
@@ -566,7 +600,7 @@ const mutations = { // handle response from actions to update state
 
   setValueRefOrderTogoSelected(state, value) {
     state.refOrderTogoSelected = value;
-  }
+  },
 };
 
 export default {
@@ -574,5 +608,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
-}
+  mutations,
+};

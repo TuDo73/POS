@@ -1,18 +1,24 @@
 <template>
   <div class="body-wrapper">
-    <Header/>
-    <div class="list-order-wrapper" :class="{'on-smallscreen': isOnSmallScreen}">
+    <Header />
+    <div
+      class="list-order-wrapper"
+      :class="{ 'on-smallscreen': isOnSmallScreen }"
+    >
       <div class="customer-toolbar">
         <div class="search-box">
           <div class="search-icon-wrap">
             <span class="icon-search"></span>
           </div>
           <!-- <div class="input-customer-wrap" @click="showHideSearchCustomerKeyboard(true)"> -->
-            <input type="text" 
-            placeholder="Tìm kiếm" 
-            class="input-search" 
-            id="input-search-list-customer" 
-            @input="onInputChange" @focus="showHideSearchListKeyboard($event, true)">
+          <input
+            type="text"
+            placeholder="Tìm kiếm"
+            class="input-search"
+            id="input-search-list-customer"
+            @input="onInputChange"
+            @focus="showHideSearchListKeyboard($event, true)"
+          />
           <!-- </div> -->
           <div class="reset-btn">
             <span class="icon-close"></span>
@@ -58,30 +64,35 @@
             </ul>
           </div>
           <div class="row-body" ref="rowBody">
-            <ul class="row-pl" v-for="(customer, index) in customers" :key="index" ref="rowData">
+            <ul
+              class="row-pl"
+              v-for="(customer, index) in customers"
+              :key="index"
+              ref="rowData"
+            >
               <li class="col-pl small-type">
                 <div class="col-pl-data">
-                  {{customer.name}}
+                  {{ customer.name }}
                 </div>
               </li>
               <li class="col-pl">
                 <div class="col-pl-data">
-                  {{customer.name}}
+                  {{ customer.name }}
                 </div>
               </li>
               <li class="col-pl">
                 <div class="col-pl-data">
-                  {{customer.address}}
+                  {{ customer.address }}
                 </div>
               </li>
               <li class="col-pl">
                 <div class="col-pl-data">
-                  {{customer.email}}
+                  {{ customer.email }}
                 </div>
               </li>
               <li class="col-pl large-type">
                 <div class="col-pl-data">
-                  {{customer.phone}}
+                  {{ customer.phone }}
                 </div>
               </li>
             </ul>
@@ -97,126 +108,134 @@
         </div>
       </div>
     </div>
-    <KeyboardSearchList 
-    @onChange="onChange" 
-    :inputSelected="inputSelected" 
-    :inputNameSelected="inputNameSelected" 
-    :inputValueSelected="inputValueSelected" 
-    :input="input" ref="keyboard"/>
+    <KeyboardSearchList
+      @onChange="onChange"
+      :inputSelected="inputSelected"
+      :inputNameSelected="inputNameSelected"
+      :inputValueSelected="inputValueSelected"
+      :input="input"
+      ref="keyboard"
+    />
   </div>
 </template>
 <script>
-  import Header from '@/components/Header.vue'
-  import { globalFunction } from '@/global/global.js'
-  import { mapState } from 'vuex'
-  import KeyboardSearchList from '@/components/elements/keyboard/KeyboardSearchList.vue'
+import Header from "@/components/Header.vue";
+import { globalFunction } from "@/global/global.js";
+import { mapState } from "vuex";
+import KeyboardSearchList from "@/components/elements/keyboard/KeyboardSearchList.vue";
 
-  export default {
+export default {
+  data() {
+    return {
+      // biến bàn phím ảo
+      input: "",
+      inputNameSelected: "",
+      inputValueSelected: "",
+      inputSelected: "",
+    };
+  },
 
-    data() {
-      return {
-        // biến bàn phím ảo
-        input: '',
-        inputNameSelected: '',
-        inputValueSelected: '',
-        inputSelected: '',
+  computed: {
+    ...mapState({
+      customers: (state) => state.user.customers,
+      isOnSmallScreen: (state) => state.helper.isOnSmallScreen,
+    }),
+  },
+
+  components: {
+    Header: Header,
+    KeyboardSearchList: KeyboardSearchList,
+  },
+
+  methods: {
+    async getAllCustomer() {
+      this.$store.commit("helper/showLoading", true);
+      let link = globalFunction.baseUrl + "customer/selectall";
+      let data = {};
+
+      let allCustomer = await globalFunction.request(link, data);
+      this.$store.commit("user/setCustomers", allCustomer);
+      this.$store.commit("helper/showLoading", false);
+
+      setTimeout(() => {
+        let hBlockFooter = 0;
+        globalFunction.handleHeightListBox(
+          this.$refs.customerListBox,
+          this.$refs.rowBody,
+          this.$refs.rowData,
+          this.customers.length - 1,
+          hBlockFooter,
+          "large"
+        );
+      }, 0);
+    },
+
+    handleScrollList(direction) {
+      let list = this.$refs.rowBody;
+      let nextScroll = 200;
+
+      this.currentItemScrollTo = list.scrollTop;
+
+      switch (direction) {
+        case "down":
+          this.currentItemScrollTo += nextScroll;
+          list.scrollTop = this.currentItemScrollTo;
+          if (list.scrollTop < this.currentItemScrollTo) {
+            this.currentItemScrollTo = list.scrollTop;
+          }
+          break;
+        case "up":
+          this.currentItemScrollTo -= nextScroll;
+          list.scrollTop = this.currentItemScrollTo;
+          break;
+        default:
+          break;
       }
     },
 
-    computed: {
-      ...mapState({
-        customers: state => state.user.customers,
-        isOnSmallScreen: state => state.helper.isOnSmallScreen,
-      }),
+    backToHome() {
+      this.$router.push({ path: "home" });
     },
 
-    components: {
-      'Header': Header,
-      'KeyboardSearchList': KeyboardSearchList,
+    addNewCustomer() {
+      this.$router.push({ path: "new-customer" });
     },
 
-    methods: {
-      async getAllCustomer() {
-        this.$store.commit('helper/showLoading', true);
-        let link = globalFunction.baseUrl + 'customer/selectall';
-        let data = {};
+    // method bàn phím ảo
+    showHideSearchListKeyboard(e, value) {
+      if (!this.$device.android && !this.$device.ios) {
+        this.$store.dispatch("helper/updateKeyboardState", value);
+        this.$store.dispatch("helper/showHideSearchListKeyboard", value);
 
-        let allCustomer = await globalFunction.request(link, data);
-        this.$store.commit('user/setCustomers', allCustomer);
-        // console.log('allCustomer',allCustomer);
-        this.$store.commit('helper/showLoading', false);
-        
-        setTimeout(() => {
-          let hBlockFooter = 0;
-          globalFunction.handleHeightListBox(this.$refs.customerListBox, this.$refs.rowBody, this.$refs.rowData, this.customers.length - 1, hBlockFooter, 'large');
-        }, 0);
-      },
-
-      handleScrollList(direction) {
-        let list = this.$refs.rowBody;
-        let nextScroll = 200;
-
-        this.currentItemScrollTo = list.scrollTop;
-
-        switch (direction) {
-          case 'down':
-            this.currentItemScrollTo += nextScroll;
-            list.scrollTop = this.currentItemScrollTo;
-            if (list.scrollTop < this.currentItemScrollTo) {
-              this.currentItemScrollTo = list.scrollTop;
-            }
-            break;
-          case 'up':
-            this.currentItemScrollTo -= nextScroll;
-            list.scrollTop = this.currentItemScrollTo;
-            break;
-          default:
-            break;
-        }
-      },
-
-      backToHome() {
-        this.$router.push({ path: 'home' });
-      },
-
-      addNewCustomer() {
-        this.$router.push({ path: 'new-customer' });
-      },
-
-      // method bàn phím ảo
-      showHideSearchListKeyboard(e, value) {
-        if (!this.$device.android && !this.$device.ios) {
-          this.$store.dispatch('helper/updateKeyboardState', value);
-          this.$store.dispatch('helper/showHideSearchListKeyboard', value);
-
-          this.inputSelected = `#${e.target.id}`;
-          this.inputNameSelected = e.target.id;
-
-          setTimeout(() => {
-            this.$refs.keyboard.setInputName();
-            this.$refs.keyboard.handleHeightCloseButton();
-          }, 0);
-        }
-      },
-
-      onChange(input) {
-        this.input = input;
-        document.querySelector(this.inputSelected).value = input;
-      },
-
-      onInputChange(e) { // tracking các input change được tạo ra không phải từ bàn phím ảo
-        this.input = e.target.value;
-        this.inputValueSelected = e.target.value;
+        this.inputSelected = `#${e.target.id}`;
+        this.inputNameSelected = e.target.id;
 
         setTimeout(() => {
-          this.$refs.keyboard.setInputValue();
+          this.$refs.keyboard.setInputName();
+          this.$refs.keyboard.handleHeightCloseButton();
         }, 0);
-      },
+      }
     },
 
-    created() {
-      this.getAllCustomer();
-      this.$store.dispatch('helper/hideAllKeyboard');
-    }
-  };
+    onChange(input) {
+      this.input = input;
+      document.querySelector(this.inputSelected).value = input;
+    },
+
+    onInputChange(e) {
+      // tracking các input change được tạo ra không phải từ bàn phím ảo
+      this.input = e.target.value;
+      this.inputValueSelected = e.target.value;
+
+      setTimeout(() => {
+        this.$refs.keyboard.setInputValue();
+      }, 0);
+    },
+  },
+
+  created() {
+    this.getAllCustomer();
+    this.$store.dispatch("helper/hideAllKeyboard");
+  },
+};
 </script>

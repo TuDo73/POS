@@ -1098,8 +1098,6 @@ export default {
           this.$store.commit("order/setOrderSelected", tmpOrderSelected);
           this.$store.commit("order/setOrders", this.orders);
 
-          // console.log(this.orderSelected);
-
           this.closePopup();
         }
       }

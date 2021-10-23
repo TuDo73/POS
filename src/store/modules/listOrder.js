@@ -1,20 +1,23 @@
-import { globalFunction } from '@/global/global.js';
+import { globalFunction } from "@/global/global.js";
 
-const state = { // data
+const state = {
+  // data
   listOrders: [],
   order: {},
-  retourReason: '',
+  retourReason: "",
   actionRetour: false,
   tempOrders: [],
-  listOrdersForShowOriginal: []
+  listOrdersForShowOriginal: [],
 };
-const getters = { // computed
+const getters = {
+  // computed
 };
 
-const actions = { // methods
-  searchListOrder({commit, state, dispatch}, searchValue) {
+const actions = {
+  // methods
+  searchListOrder({ commit, state, dispatch }, searchValue) {
     if (searchValue.length > 0) {
-      state.tempOrders = [...state.listOrdersForShowOriginal].filter(item => {
+      state.tempOrders = [...state.listOrdersForShowOriginal].filter((item) => {
         let itemBeleg = item.beleg.toString().toLowerCase();
         let itemPrice = item.totalPrice.toString().toLowerCase();
         let searchString = itemBeleg + itemPrice;
@@ -26,15 +29,14 @@ const actions = { // methods
   },
 };
 
-const mutations = { // handle response from actions to update state
+const mutations = {
+  // handle response from actions to update state
   setListOrdersData(state, value) {
     state.listOrders = globalFunction.deepCloneObj(value);
-    // console.log('state.listOrders:', state.listOrders);
   },
 
   setOrder(state, value) {
     state.order = globalFunction.deepCloneObj(value);
-    // console.log('state.order:', state.order);
   },
 
   setRetourReason(state, value) {
@@ -50,8 +52,9 @@ const mutations = { // handle response from actions to update state
   },
 
   setTempOrders(state) {
-    state.tempOrders = globalFunction.deepCloneObj(state.listOrdersForShowOriginal);
-    // console.log(state.tempOrders);
+    state.tempOrders = globalFunction.deepCloneObj(
+      state.listOrdersForShowOriginal
+    );
   },
 };
 
@@ -60,5 +63,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
-}
+  mutations,
+};
